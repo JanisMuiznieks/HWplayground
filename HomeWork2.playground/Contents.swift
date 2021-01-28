@@ -49,34 +49,56 @@ print("New: \(qty) MacBook Pro with the price of: \(price) EUR, will cost you: \
  Create String userInputAge and put value "33a" and convert to Int to make Fatal error: Unexpectedly found nil while unwrapping an Optional value!
  Fix this Fatal error inside the if-else statements to print whenever this age can be converted to Int or not!
  */
-var userInputAge: String = "33a"
-var convertToInt = Int(userInputAge)
+let userInputAge: String = "33a"
+let convertToInt = Int(userInputAge)
 
-if convertToInt == nil {
-    print("convertToInt does not contain any value")
+if let convertToInt = Int(userInputAge) {
+    print("\nString is convertiable to Int with the value: \(convertToInt)")
 } else {
-    print(convertToInt ?? "")
+    print("\nUnable to convert the String to Int")
 }
 /*
  Ex5:
  Calculate the number of years, months, days from you birthday to current date.
  print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth)")
  */
+let formatter = DateFormatter()
+formatter.dateFormat = "dd.MM.yyyy"
 
+let calendar = Calendar.current
+
+let currentDate = Date()
+let myBirthDateString = "07.02.1999"
+let myBirthDay = formatter.date(from: myBirthDateString) ?? Date()
+
+var totalYearsFromBirth = calendar.dateComponents([.year], from: myBirthDay, to: currentDate).year
+var totalMonthFromBirth = calendar.dateComponents([.month], from: myBirthDay, to: currentDate).month
+var totalDaysFromBirth = calendar.dateComponents([.day], from: myBirthDay, to: currentDate).day
+
+if totalYearsFromBirth == 0 || totalMonthFromBirth == 0 || totalDaysFromBirth == 0 {
+    print("unable to check the total year, month, day due to wrong input")
+} else {
+    print("\nTotal years: \(totalYearsFromBirth) , \nTotal months: \(totalMonthFromBirth), \nTotal days: \(totalDaysFromBirth)")
+}
+/*
+ 
+ 
+ 
 let myDayOfBirth = Calendar.current.date(from: DateComponents(year: 1999, month: 2, day: 7))!
 let myAgeInMonths = Calendar.current.dateComponents([.month], from: myDayOfBirth, to: Date()).month!
-let totalYearsFromBirth = myAgeInMonths / 12
-let totalMonthFromBirth = myAgeInMonths
-let totalDaysFromBirth = myAgeInMonths * Int(365.25)
-print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth)")
+let totalYearsFromBirthTwo = myAgeInMonths / 12
+let totalMonthFromBirthTwo = myAgeInMonths
+let totalDaysFromBirthTwo = myAgeInMonths * Int(12)
+print("\nTotal years: \(totalYearsFromBirthTwo) , \nTotal months: \(totalMonthFromBirthTwo), \nTotal days: \(totalDaysFromBirthTwo)")
+*/
 
 /*
  Ex6:
  Use Exercise 5 monthOfBirth to calculate in which quarter of the year you were born.
  Use switch case to print("I was born in the ... quarter")
  */
-let monthOfBirth = 2
-switch monthOfBirth {
+if let month = calendar.dateComponents([.month], from: myBirthDay).month {
+switch month {
 case 1...3:
     print("I was born in the first quarter!")
 case 4...6:
@@ -87,4 +109,6 @@ case 10...12:
     print("I was born in the fourth quarter!")
 default:
     break
+}
+    
 }
