@@ -21,7 +21,7 @@ var resultsOfGames = [
 ]
 for (opponentTeam, result) in resultsOfGames {
     result.forEach { result in
-        print("\(myTeam) against \(opponentTeam) scored \(result)")
+        print("\(myTeam) against \(opponentTeam) scored - \(result)")
         
     }
 }
