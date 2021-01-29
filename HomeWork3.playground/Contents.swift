@@ -34,7 +34,13 @@ print("\nMy even numbers are: \(evenNumber)")
  Exercise 3
  Inside the for loop create randomNumber for the random Int calculation. Calculate and print("Number 5 will be after \(counter) shuffles"). Don't forget to make a break inside the if statement.
  */
-
+for counter in 1...10 {
+    let randomNumber = Int.random(in: 1...10)
+    if randomNumber == 5 {
+        print("\nNumber 5 will be after \(counter) shuffles")
+        break
+    }
+}
 /*
 var counter = 0
 var randomNumber = Int.random(in: 1...100)
